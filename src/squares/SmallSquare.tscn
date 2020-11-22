@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/squares/SmallSquare.gd" type="Script" id=1]
+[ext_resource path="res://src/squares/Tile.tscn" type="PackedScene" id=2]
+
+[node name="SmallSquare" type="GridContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+custom_constants/vseparation = 1
+custom_constants/hseparation = 1
+columns = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlankTile1" parent="." instance=ExtResource( 2 )]
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="BlankTile2" parent="." instance=ExtResource( 2 )]
+margin_left = 17.0
+margin_right = 33.0
+margin_bottom = 16.0
+
+[node name="BlankTile3" parent="." instance=ExtResource( 2 )]
+margin_left = 34.0
+margin_right = 50.0
+margin_bottom = 16.0
+
+[node name="BlankTile4" parent="." instance=ExtResource( 2 )]
+margin_top = 17.0
+margin_right = 16.0
+margin_bottom = 33.0
+
+[node name="BlankTile5" parent="." instance=ExtResource( 2 )]
+margin_left = 17.0
+margin_top = 17.0
+margin_right = 33.0
+margin_bottom = 33.0
+
+[node name="BlankTile6" parent="." instance=ExtResource( 2 )]
+margin_left = 34.0
+margin_top = 17.0
+margin_right = 50.0
+margin_bottom = 33.0
+
+[node name="BlankTile7" parent="." instance=ExtResource( 2 )]
+margin_top = 34.0
+margin_right = 16.0
+margin_bottom = 50.0
+
+[node name="BlankTile8" parent="." instance=ExtResource( 2 )]
+margin_left = 17.0
+margin_top = 34.0
+margin_right = 33.0
+margin_bottom = 50.0
+
+[node name="BlankTile9" parent="." instance=ExtResource( 2 )]
+margin_left = 34.0
+margin_top = 34.0
+margin_right = 50.0
+margin_bottom = 50.0

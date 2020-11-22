@@ -1,0 +1,107 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/squares/SmallSquare.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/squares/BigSquare.gd" type="Script" id=2]
+
+[node name="BigSquare" type="Control"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Grid" type="GridContainer" parent="."]
+margin_right = 160.0
+margin_bottom = 160.0
+custom_constants/vseparation = 5
+custom_constants/hseparation = 5
+columns = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SmallSquare1" parent="Grid" instance=ExtResource( 1 )]
+
+[node name="SmallSquare2" parent="Grid" instance=ExtResource( 1 )]
+margin_left = 55.0
+margin_right = 105.0
+
+[node name="SmallSquare3" parent="Grid" instance=ExtResource( 1 )]
+margin_left = 110.0
+margin_right = 160.0
+
+[node name="SmallSquare4" parent="Grid" instance=ExtResource( 1 )]
+margin_top = 55.0
+margin_bottom = 105.0
+
+[node name="SmallSquare5" parent="Grid" instance=ExtResource( 1 )]
+margin_left = 55.0
+margin_top = 55.0
+margin_right = 105.0
+margin_bottom = 105.0
+
+[node name="SmallSquare6" parent="Grid" instance=ExtResource( 1 )]
+margin_left = 110.0
+margin_top = 55.0
+margin_right = 160.0
+margin_bottom = 105.0
+
+[node name="SmallSquare7" parent="Grid" instance=ExtResource( 1 )]
+margin_top = 110.0
+margin_bottom = 160.0
+
+[node name="SmallSquare8" parent="Grid" instance=ExtResource( 1 )]
+margin_left = 55.0
+margin_top = 110.0
+margin_right = 105.0
+margin_bottom = 160.0
+
+[node name="SmallSquare9" parent="Grid" instance=ExtResource( 1 )]
+margin_left = 110.0
+margin_top = 110.0
+margin_right = 160.0
+margin_bottom = 160.0
+
+[node name="Separators" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Separators"]
+margin_left = 372.421
+margin_top = -90.4949
+margin_right = 387.421
+margin_bottom = 1259.51
+color = Color( 0.952941, 0.952941, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="Separators"]
+margin_left = 763.986
+margin_top = -90.4949
+margin_right = 778.986
+margin_bottom = 1259.51
+color = Color( 0.952941, 0.952941, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect3" type="ColorRect" parent="Separators"]
+margin_left = -114.784
+margin_top = 372.229
+margin_right = 1235.22
+margin_bottom = 387.229
+color = Color( 0.952941, 0.952941, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect4" type="ColorRect" parent="Separators"]
+margin_left = -112.755
+margin_top = 763.921
+margin_right = 1237.25
+margin_bottom = 778.921
+color = Color( 0.952941, 0.952941, 0.952941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

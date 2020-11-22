@@ -1,0 +1,321 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/images/old/tileBlack_27 60x60.png" type="Texture" id=1]
+[ext_resource path="res://src/background/MovingParallaxLayer.gd" type="Script" id=2]
+[ext_resource path="res://src/squares/BigSquare.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/Pixels TEXT.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/levels/Level.gd" type="Script" id=5]
+[ext_resource path="res://src/UI/CurrentTurnText.gd" type="Script" id=6]
+[ext_resource path="res://assets/images/backgrounds/circle.png" type="Texture" id=7]
+[ext_resource path="res://src/UI/TurnLabels.gd" type="Script" id=8]
+[ext_resource path="res://src/menus/PathButton.tscn" type="PackedScene" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 128
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "MoveLeft"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -505.087, 0 ) ]
+}
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="TiledBackground" type="TextureRect" parent="ParallaxBackground/ParallaxLayer1"]
+visible = false
+margin_right = 1080.0
+margin_bottom = 1920.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
+show_behind_parent = true
+margin_right = 960.0
+margin_bottom = 960.0
+mouse_filter = 1
+color = Color( 0.227451, 0.239216, 0.235294, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_mirroring = Vector2( 540, 240 )
+script = ExtResource( 2 )
+scroll_velocity_x = 45
+scroll_velocity_y = 0
+
+[node name="Circle" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+modulate = Color( 1, 1, 1, 0.105882 )
+margin_left = -129.192
+margin_top = 154.68
+margin_right = -49.1921
+margin_bottom = 234.68
+rect_rotation = 31.756
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circle2" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
+modulate = Color( 1, 1, 1, 0.105882 )
+margin_left = 25.0111
+margin_top = 46.9237
+margin_right = 105.011
+margin_bottom = 126.924
+rect_rotation = 31.756
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circles" type="Node2D" parent="."]
+
+[node name="Circles1" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 0 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles2" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 200 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles3" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 400 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles4" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 600 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles5" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 800 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles6" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, -200 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles7" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, -400 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="Circles8" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, -600 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 7 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.5, 0.5, 0.5, 1 )
+
+[node name="BigSquare" parent="." instance=ExtResource( 3 )]
+margin_left = 188.255
+margin_top = 385.552
+margin_right = 188.255
+margin_bottom = 385.552
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 80, 80 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UIControl" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="Control" parent="UI/UIControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CurrentTurn" type="Label" parent="UI/UIControl/Labels"]
+visible = false
+margin_left = -6.0
+margin_top = 9.0
+margin_right = 535.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Turn: Blue"
+align = 1
+valign = 1
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Winner" type="Label" parent="UI/UIControl/Labels"]
+margin_left = -6.0
+margin_top = 734.288
+margin_right = 535.0
+margin_bottom = 828.288
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "winner: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
+margin_left = 6.0
+margin_top = 66.6841
+margin_right = 546.0
+margin_bottom = 189.684
+custom_fonts/font = SubResource( 3 )
+text = "Restart"
+
+[node name="TurnLabels" type="Control" parent="UI/UIControl/Labels"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pivot" type="Control" parent="UI/UIControl/Labels/TurnLabels"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue" type="Label" parent="UI/UIControl/Labels/TurnLabels/Pivot"]
+margin_left = -6.0
+margin_top = 9.0
+margin_right = 535.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.235294, 0.67451, 0.843137, 1 )
+text = "Turn: Blue"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Red" type="Label" parent="UI/UIControl/Labels/TurnLabels/Pivot"]
+margin_left = 501.207
+margin_top = 9.0
+margin_right = 1042.21
+margin_bottom = 103.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.901961, 0.282353, 0.180392, 1 )
+text = "Turn: Red"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UIControl/Labels/TurnLabels/Pivot"]
+anims/MoveLeft = SubResource( 2 )
