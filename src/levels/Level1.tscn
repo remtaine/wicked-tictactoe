@@ -15,13 +15,12 @@ size = 128
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 100
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "MoveLeft"
+[sub_resource type="Animation" id=3]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -249,9 +248,9 @@ __meta__ = {
 
 [node name="Winner" type="Label" parent="UI/UIControl/Labels"]
 margin_left = -6.0
-margin_top = 734.288
+margin_top = 719.575
 margin_right = 535.0
-margin_bottom = 828.288
+margin_bottom = 813.575
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
@@ -263,12 +262,23 @@ __meta__ = {
 }
 
 [node name="RestartButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
-margin_left = 6.0
-margin_top = 66.6841
-margin_right = 546.0
-margin_bottom = 189.684
-custom_fonts/font = SubResource( 3 )
+margin_left = 64.0652
+margin_top = 79.5972
+margin_right = 251.065
+margin_bottom = 199.191
+custom_fonts/font = SubResource( 2 )
 text = "Restart"
+align = 0
+
+[node name="MainMenuButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
+margin_left = 330.0
+margin_top = 80.3893
+margin_right = 484.649
+margin_bottom = 200.866
+custom_fonts/font = SubResource( 2 )
+text = "Menu"
+align = 2
+level_path = "res://src/menus/MainMenu.tscn"
 
 [node name="TurnLabels" type="Control" parent="UI/UIControl/Labels"]
 margin_right = 40.0
@@ -318,4 +328,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UIControl/Labels/TurnLabels/Pivot"]
-anims/MoveLeft = SubResource( 2 )
+anims/MoveLeft = SubResource( 3 )

@@ -3,17 +3,17 @@
 [ext_resource path="res://assets/fonts/MainMenuFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/menus/MainMenuButton.gd" type="Script" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=3]
+[sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="StyleBoxEmpty" id=4]
+[sub_resource type="StyleBoxEmpty" id=2]
 
 [node name="MainMenuButton" type="Button"]
 margin_left = 151.151
 margin_top = 479.284
 margin_right = 393.151
 margin_bottom = 602.284
-custom_styles/pressed = SubResource( 3 )
-custom_styles/focus = SubResource( 4 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 2 )
 custom_fonts/font = ExtResource( 1 )
 text = "Start!"
 flat = true
