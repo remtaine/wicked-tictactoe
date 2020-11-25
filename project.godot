@@ -29,30 +29,55 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/menus/MainMenuButton.gd"
 }, {
+"base": "MainMenuButton",
+"class": "OnePButton",
+"language": "GDScript",
+"path": "res://src/menus/1PButton.gd"
+}, {
 "base": "ParallaxLayer",
 "class": "ScrollingParallaxLayer",
 "language": "GDScript",
 "path": "res://src/background/MovingParallaxLayer.gd"
 }, {
+"base": "Button",
+"class": "StartButton",
+"language": "GDScript",
+"path": "res://src/menus/StartButton.gd"
+}, {
+"base": "Control",
+"class": "ThinkingLabel",
+"language": "GDScript",
+"path": "res://src/menus/ThinkingLabel.gd"
+}, {
 "base": "TextureRect",
 "class": "Tile",
 "language": "GDScript",
 "path": "res://src/squares/Tile.gd"
+}, {
+"base": "Label",
+"class": "ToggleLabel",
+"language": "GDScript",
+"path": "res://src/menus/ToggleLabel.gd"
 } ]
 _global_script_class_icons={
 "BigSquare": "",
 "CurrentTurnText": "",
 "Level": "",
 "MainMenuButton": "",
+"OnePButton": "",
 "ScrollingParallaxLayer": "",
-"Tile": ""
+"StartButton": "",
+"ThinkingLabel": "",
+"Tile": "",
+"ToggleLabel": ""
 }
 
 [application]
 
 config/name="WickedTictactoe"
 run/main_scene="res://src/menus/MainMenu.tscn"
-config/icon="res://assets/images/tiles/block.png"
+boot_splash/image="res://assets/images/UI/Logo Splash Screen v2.png"
+config/icon="res://assets/default/icon.png"
 
 [autoload]
 

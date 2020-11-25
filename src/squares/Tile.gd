@@ -12,7 +12,7 @@ enum Value {
 export (Value) var current_value := Value.EMPTY setget set_value
 
 export (float) var scale_on_hover = 1.1
-export (float) var modulate_on_unselectable = 0.7
+export (float) var modulate_on_unselectable = 0.6
 
 #export (PackedScene) var clicked_particle
 
@@ -27,20 +27,32 @@ onready var clicked_particle = preload("res://src/particles/ClickedParticle.tscn
 
 
 func _ready() -> void:
+	yield(get_tree(), "idle_frame")
+	rect_scale = Vector2.ZERO
+	is_clickable = false
+	
+func intro() -> void:
 	tween.interpolate_property(self, "rect_rotation", rect_rotation - 360, rect_rotation, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
-	tween.interpolate_property(self, "rect_scale", Vector2.ZERO, rect_scale, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
+	tween.interpolate_property(self, "rect_scale", Vector2.ZERO, Vector2.ONE, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
 	tween.start()
 	
 func capture(value = Value.NONE) -> void:
 	$TopTiles.play("full")
-#	$BottomTiles.play("full")
+	
 	match value:
 		Value.BLUE:
+#			$TopTiles.play("full")
 			$TopTiles.modulate = GameInfo.blue
+			$ColorblindTiles.play("blue_bg")
 		Value.RED:
+#			$TopTiles.play("full")			
 			$TopTiles.modulate = GameInfo.red
+			$ColorblindTiles.play("red_bg")
 		Value.NONE:
+#			$TopTiles.play("full")
 			$TopTiles.modulate = GameInfo.yellow
+#			$ColorblindTiles.play("yellow_bg")
+			
 	set_clickable(false)
 
 func _on_Tile_mouse_entered() -> void:
@@ -56,26 +68,31 @@ func _on_Tile_mouse_exited() -> void:
 
 func _on_Tile_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and is_clickable and is_selectable:
-		var particle = clicked_particle.instance()
-		particle.position = get_global_mouse_position()
-		GameInfo.current_level.add_child(particle)
-		particle.emitting = true
-		
-		match GameInfo.current_level.current_turn:
-			"blue":
-				set_value(0)
-				GameInfo.current_level.current_turn = "red"
-			"red":
-				set_value(1)
-				GameInfo.current_level.current_turn = "blue"
-		set_clickable(false)
+#		$Audio/Clicked.pitch_scale = rand_range(1.00, 1.05)
+		click()
 		
 #		animate("top_rotation")
 #		tween.interpolate_property($TopTiles, "rotation_degrees", $TopTiles.rotation_degrees + 360, $TopTiles.rotation_degrees, clicked_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
-		tween.start()
+#		tween.start()
 #		$TopTiles.modulate = Color(1,1,1,1)
 		
-
+func click():
+	$Audio/Clicked.play()
+		
+	var particle = clicked_particle.instance()
+	particle.position = get_global_mouse_position()
+	GameInfo.current_level.add_child(particle)
+	particle.emitting = true
+	
+	match GameInfo.current_level.current_turn:
+		"blue":
+			set_value(0)
+			GameInfo.current_level.current_turn = "red"
+		"red":
+			set_value(1)
+			GameInfo.current_level.current_turn = "blue"
+	set_clickable(false)
+		
 func set_value(v : int) -> void:
 	if current_value == v:
 		return

@@ -1,80 +1,86 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://src/background/MovingParallaxLayer.gd" type="Script" id=1]
+[ext_resource path="res://src/menus/StartButton.gd" type="Script" id=1]
 [ext_resource path="res://src/menus/PathButton.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/fonts/Pixels TEXT.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/images/old/tileBlack_27 60x60.png" type="Texture" id=4]
-[ext_resource path="res://assets/images/backgrounds/circle.png" type="Texture" id=6]
+[ext_resource path="res://src/menus/1PButton.gd" type="Script" id=4]
+[ext_resource path="res://assets/music/Retro Beat.ogg" type="AudioStream" id=5]
+[ext_resource path="res://src/menus/MainMenu.gd" type="Script" id=6]
+[ext_resource path="res://assets/images/backgrounds/yellow_mark_as_white.png" type="Texture" id=7]
+[ext_resource path="res://src/menus/ToggleLabel.gd" type="Script" id=8]
+[ext_resource path="res://assets/images/tiles/full_tile.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/tiles/empty_tile.png" type="Texture" id=10]
+[ext_resource path="res://assets/box formats/CheckboxFormat.tres" type="StyleBox" id=11]
+[ext_resource path="res://assets/sfx/button_clicked.ogg" type="AudioStream" id=12]
 
 [sub_resource type="DynamicFont" id=1]
-size = 128
-outline_color = Color( 0, 0, 0, 1 )
+size = 192
+outline_size = 12
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 48
+outline_size = 4
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 224
+outline_size = 12
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "Blink"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 1, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.196078 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=7]
+size = 168
+outline_size = 12
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 64
+outline_size = 4
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=9]
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Node2D"]
+script = ExtResource( 6 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="TiledBackground" type="TextureRect" parent="ParallaxBackground/ParallaxLayer1"]
-visible = false
-margin_right = 1080.0
-margin_bottom = 1920.0
-rect_scale = Vector2( 2, 2 )
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
 show_behind_parent = true
 margin_right = 540.0
 margin_bottom = 960.0
 mouse_filter = 1
-color = Color( 0.227451, 0.239216, 0.235294, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_mirroring = Vector2( 540, 240 )
-script = ExtResource( 1 )
-scroll_velocity_x = 45
-scroll_velocity_y = 0
-
-[node name="Circle" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
-modulate = Color( 1, 1, 1, 0.105882 )
-margin_left = -129.192
-margin_top = 154.68
-margin_right = -49.1921
-margin_bottom = 234.68
-rect_rotation = 31.756
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Circle2" type="TextureRect" parent="ParallaxBackground/ParallaxLayer2"]
-modulate = Color( 1, 1, 1, 0.105882 )
-margin_left = 25.0111
-margin_top = 46.9237
-margin_right = 105.011
-margin_bottom = 126.924
-rect_rotation = 31.756
-texture = ExtResource( 6 )
-expand = true
-stretch_mode = 2
+color = Color( 0.117647, 0.117647, 0.141176, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -86,104 +92,104 @@ position = Vector2( -125, 0 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.235294, 0.67451, 0.843137, 1 )
 
 [node name="Circles2" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, 200 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.901961, 0.282353, 0.180392, 1 )
 
 [node name="Circles3" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, 400 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.956863, 0.705882, 0.105882, 1 )
 
 [node name="Circles4" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, 600 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.235294, 0.67451, 0.843137, 1 )
 
 [node name="Circles5" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, 800 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.901961, 0.282353, 0.180392, 1 )
 
 [node name="Circles6" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, -200 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.956863, 0.705882, 0.105882, 1 )
 
 [node name="Circles7" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, -400 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.235294, 0.67451, 0.843137, 1 )
 
 [node name="Circles8" type="CPUParticles2D" parent="Circles"]
 position = Vector2( -125, -600 )
 amount = 5
 lifetime = 20.0
 preprocess = 20.0
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 direction = Vector2( 1, 1 )
 spread = 0.0
 gravity = Vector2( 0, 0 )
 initial_velocity = 50.0
 scale_amount = 5.0
-color = Color( 0.5, 0.5, 0.5, 1 )
+color = Color( 0.901961, 0.282353, 0.180392, 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -202,13 +208,14 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="UI/UIControl/Labels"]
-margin_left = 4.46478
-margin_top = 70.0621
-margin_right = 545.465
-margin_bottom = 228.062
+margin_left = 10.0
+margin_top = 44.4131
+margin_right = 550.0
+margin_bottom = 294.413
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_constants/line_spacing = -30
 text = "Wicked
 TicTacToe"
@@ -219,13 +226,14 @@ __meta__ = {
 }
 
 [node name="Credits" type="Label" parent="UI/UIControl/Labels"]
-margin_left = 6.34885
-margin_top = 793.33
-margin_right = 547.349
-margin_bottom = 951.33
+margin_left = 10.0
+margin_top = 900.0
+margin_right = 540.0
+margin_bottom = 950.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_constants/line_spacing = -30
 text = "Made by Remtaine"
 valign = 2
@@ -234,19 +242,127 @@ __meta__ = {
 }
 
 [node name="Version" type="Label" parent="UI/UIControl/Labels"]
-margin_left = -4.10025
-margin_top = 793.33
-margin_right = 536.9
-margin_bottom = 951.33
+margin_top = 900.0
+margin_right = 530.0
+margin_bottom = 950.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_constants/line_spacing = -30
-text = "v1.0"
+text = "v1.0.8"
 align = 2
 valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MainMenuButton" parent="UI/UIControl/Labels" instance=ExtResource( 2 )]
+[node name="MainMenuButton" type="Button" parent="UI/UIControl/Labels"]
+margin_left = 10.7415
+margin_top = 348.722
+margin_right = 550.742
+margin_bottom = 518.722
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color_disabled = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
+text = "Start!"
+flat = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Node2D" parent="UI/UIControl/Labels/MainMenuButton"]
+
+[node name="Clicked" type="AudioStreamPlayer" parent="UI/UIControl/Labels/MainMenuButton/Audio"]
+stream = ExtResource( 12 )
+volume_db = -8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UIControl/Labels/MainMenuButton"]
+autoplay = "Blink"
+anims/Blink = SubResource( 6 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/UIControl/Labels/MainMenuButton"]
+margin_left = 119.455
+margin_top = 133.151
+margin_right = 424.455
+margin_bottom = 303.151
+custom_constants/separation = 80
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="1PButton" parent="UI/UIControl/Labels/MainMenuButton/HBoxContainer" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 1, 1, 1 )
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 107.0
+margin_bottom = 170.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
+text = "1P"
+script = ExtResource( 4 )
+is_animated_on_start = true
+
+[node name="2PButton" parent="UI/UIControl/Labels/MainMenuButton/HBoxContainer" instance=ExtResource( 2 )]
+self_modulate = Color( 1, 1, 1, 1 )
+margin_left = 187.0
+margin_top = 0.0
+margin_right = 305.0
+margin_bottom = 170.0
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
+text = "2P"
+is_animated_on_start = true
+
+[node name="ColorBlind" type="Label" parent="UI/UIControl/Labels"]
+margin_left = 119.521
+margin_top = 749.046
+margin_right = 375.521
+margin_bottom = 796.046
+custom_fonts/font = SubResource( 8 )
+custom_colors/font_color = Color( 0.819608, 0.811765, 0.729412, 1 )
+text = "Colorblind Mode"
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckButton" type="CheckBox" parent="UI/UIControl/Labels/ColorBlind"]
+margin_left = 258.935
+margin_top = 12.106
+margin_right = 278.935
+margin_bottom = 32.106
+rect_scale = Vector2( 2, 2 )
+mouse_filter = 1
+custom_icons/checked = ExtResource( 9 )
+custom_icons/unchecked = ExtResource( 10 )
+custom_styles/hover = ExtResource( 11 )
+custom_styles/pressed = ExtResource( 11 )
+custom_styles/focus = ExtResource( 11 )
+custom_styles/hover_pressed = ExtResource( 11 )
+custom_styles/normal = ExtResource( 11 )
+custom_fonts/font = SubResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clicked" type="AudioStreamPlayer" parent="UI/UIControl/Labels/ColorBlind"]
+stream = ExtResource( 12 )
+volume_db = -10.0
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Theme" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 5 )
+autoplay = true
+[connection signal="pressed" from="UI/UIControl/Labels/MainMenuButton" to="UI/UIControl/Labels/MainMenuButton" method="_on_MainMenuButton_pressed"]
+[connection signal="toggled" from="UI/UIControl/Labels/ColorBlind/CheckButton" to="UI/UIControl/Labels/ColorBlind" method="_on_CheckButton_toggled"]

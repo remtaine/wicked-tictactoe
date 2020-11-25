@@ -56,10 +56,10 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 0.811765, 0.776471, 0.721569, 1 )
 margin_left = -52.0
-margin_top = -50.835
 margin_right = 56.0
-margin_bottom = -15.835
+margin_bottom = 35.0
 custom_fonts/font = SubResource( 1 )
 text = "nice one!"
 __meta__ = {

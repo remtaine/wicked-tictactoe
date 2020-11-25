@@ -6,5 +6,4 @@ func _ready() -> void:
 
 
 func _on_DestructionTimer_timeout() -> void:
-	print("DEAD")
 	get_parent().queue_free()

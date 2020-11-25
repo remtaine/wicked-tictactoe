@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/images/tiles/empty_tile.png" type="Texture" id=1]
 [ext_resource path="res://src/squares/Tile.gd" type="Script" id=2]
@@ -6,9 +6,19 @@
 [ext_resource path="res://assets/images/tiles/yellow_mark.png" type="Texture" id=4]
 [ext_resource path="res://assets/images/tiles/full_tile.png" type="Texture" id=5]
 [ext_resource path="res://assets/images/tiles/blue_mark.png" type="Texture" id=6]
+[ext_resource path="res://assets/sfx/tile_clicked.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/images/tiles/yellow_mark_darkened.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/tiles/red_mark_darkened v9.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/tiles/blue_mark_darkened.png" type="Texture" id=10]
+[ext_resource path="res://assets/images/tiles/super_full_tile.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "empty",
+"speed": 5.0
+}, {
 "frames": [  ],
 "loop": true,
 "name": "default",
@@ -29,14 +39,29 @@ animations = [ {
 "name": "yellow",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ ExtResource( 10 ) ],
 "loop": true,
-"name": "empty",
+"name": "blue_bg",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
+"loop": true,
+"name": "super_full",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "full",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "yellow_bg",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "red_bg",
 "speed": 5.0
 } ]
 
@@ -60,7 +85,18 @@ centered = false
 position = Vector2( 8, 8 )
 frames = SubResource( 1 )
 
+[node name="ColorblindTiles" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 8, 8 )
+frames = SubResource( 1 )
+
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Clicked" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 7 )
+volume_db = -3.0
 [connection signal="gui_input" from="." to="." method="_on_Tile_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_Tile_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Tile_mouse_exited"]

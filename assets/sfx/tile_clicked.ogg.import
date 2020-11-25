@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/tile_clicked.ogg-79835305325508758525ec8e3a84dae2.oggstr"
+
+[deps]
+
+source_file="res://assets/sfx/tile_clicked.ogg"
+dest_files=[ "res://.import/tile_clicked.ogg-79835305325508758525ec8e3a84dae2.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

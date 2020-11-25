@@ -1,13 +1,32 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/MainMenuFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/menus/MainMenuButton.gd" type="Script" id=2]
+[ext_resource path="res://assets/sfx/button_clicked.ogg" type="AudioStream" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
+[sub_resource type="Animation" id=3]
+resource_name = "Blink"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.2, 1, 1.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.196078 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [node name="MainMenuButton" type="Button"]
+self_modulate = Color( 0.933333, 0.921569, 0.827451, 1 )
 margin_left = 151.151
 margin_top = 479.284
 margin_right = 393.151
@@ -15,10 +34,20 @@ margin_bottom = 602.284
 custom_styles/pressed = SubResource( 1 )
 custom_styles/focus = SubResource( 2 )
 custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color_disabled = Color( 0.933333, 0.921569, 0.827451, 1 )
 text = "Start!"
 flat = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Clicked" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 3 )
+volume_db = -8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Blink = SubResource( 3 )
 [connection signal="pressed" from="." to="." method="_on_MainMenuButton_pressed"]

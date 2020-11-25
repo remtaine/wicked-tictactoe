@@ -1,0 +1,357 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://src/squares/BigSquare.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/Pixels TEXT.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/levels/Level.gd" type="Script" id=5]
+[ext_resource path="res://assets/images/backgrounds/yellow_mark_as_white.png" type="Texture" id=6]
+[ext_resource path="res://src/UI/TurnLabels.gd" type="Script" id=8]
+[ext_resource path="res://src/menus/PathButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/music/Retro Reggae.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/sfx/small_square_captured_v2.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sfx/small_squared_captured_no_one.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/sfx/gameover2.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/sfx/Powerup32.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/sfx/Jump8.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/images/tiles/blue_mark.png" type="Texture" id=16]
+[ext_resource path="res://assets/images/tiles/red_mark.png" type="Texture" id=17]
+
+[sub_resource type="DynamicFont" id=1]
+size = 192
+outline_size = 12
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 128
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 100
+outline_size = 12
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 160
+font_data = ExtResource( 4 )
+
+[sub_resource type="Animation" id=5]
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -505.087, 0 ) ]
+}
+
+[node name="Level1" type="Node2D"]
+position = Vector2( 0, -0.944397 )
+script = ExtResource( 5 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
+show_behind_parent = true
+margin_right = 960.0
+margin_bottom = 960.0
+mouse_filter = 1
+color = Color( 0.117647, 0.117647, 0.141176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Circles" type="Node2D" parent="."]
+
+[node name="Circles1" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 0 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles2" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 200 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles3" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 400 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles4" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 600 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles5" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, 800 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles6" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, -200 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles7" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, -400 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="Circles8" type="CPUParticles2D" parent="Circles"]
+position = Vector2( -125, -600 )
+amount = 5
+lifetime = 20.0
+preprocess = 20.0
+texture = ExtResource( 6 )
+direction = Vector2( 1, 1 )
+spread = 0.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 50.0
+scale_amount = 5.0
+color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
+
+[node name="BigSquare" parent="." instance=ExtResource( 3 )]
+margin_left = 188.812
+margin_top = 385.552
+margin_right = 188.812
+margin_bottom = 385.552
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 80, 80 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="UIControl" type="Control" parent="UI"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="Control" parent="UI/UIControl"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GameOver" type="Label" parent="UI/UIControl/Labels"]
+visible = false
+margin_left = 6.06177
+margin_top = 20.486
+margin_right = 547.062
+margin_bottom = 160.486
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+text = "Game!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="UI/UIControl/Labels/GameOver"]
+
+[node name="Winner" type="Label" parent="UI/UIControl/Labels"]
+margin_left = 0.795654
+margin_top = 721.858
+margin_right = 540.796
+margin_bottom = 815.858
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 2 )
+text = "winner: "
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
+self_modulate = Color( 1, 1, 1, 1 )
+margin_left = 51.6343
+margin_top = 100.379
+margin_right = 238.634
+margin_bottom = 180.379
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
+text = "Restart"
+
+[node name="MainMenuButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
+self_modulate = Color( 1, 1, 1, 1 )
+margin_left = 359.31
+margin_top = 100.379
+margin_right = 490.31
+margin_bottom = 180.379
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
+text = "menu"
+level_path = "res://src/menus/MainMenu.tscn"
+
+[node name="Tween" type="Tween" parent="UI/UIControl/Labels/Winner"]
+
+[node name="TurnLabels" type="Control" parent="UI/UIControl/Labels"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PivotPivot" type="Control" parent="UI/UIControl/Labels/TurnLabels"]
+margin_top = -4.68701
+margin_right = 40.0
+margin_bottom = 35.313
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pivot" type="Control" parent="UI/UIControl/Labels/TurnLabels/PivotPivot"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue" type="Label" parent="UI/UIControl/Labels/TurnLabels/PivotPivot/Pivot"]
+margin_left = -6.0
+margin_top = 9.0
+margin_right = 535.0
+margin_bottom = 103.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.235294, 0.67451, 0.843137, 1 )
+text = "blue's turn"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Red" type="Label" parent="UI/UIControl/Labels/TurnLabels/PivotPivot/Pivot"]
+margin_left = 505.751
+margin_top = 9.0
+margin_right = 1046.75
+margin_bottom = 126.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.901961, 0.282353, 0.180392, 1 )
+text = "red's turn"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UIControl/Labels/TurnLabels/PivotPivot/Pivot"]
+anims/MoveLeft = SubResource( 5 )
+
+[node name="blue_mark" type="Sprite" parent="UI/UIControl/Labels/TurnLabels/PivotPivot/Pivot"]
+position = Vector2( 273.039, 165.757 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 16 )
+
+[node name="red_mark" type="Sprite" parent="UI/UIControl/Labels/TurnLabels/PivotPivot/Pivot"]
+position = Vector2( 774.945, 165 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 17 )
+
+[node name="Audio" type="Node2D" parent="."]
+
+[node name="Theme" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 10 )
+autoplay = true
+
+[node name="Captured" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="CapturedNoOne" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 12 )
+volume_db = -5.0
+
+[node name="Win" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 14 )
+
+[node name="Lose" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 13 )
+
+[node name="Intro" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource( 15 )
+volume_db = -3.0
+autoplay = true
+
+[node name="Addons" type="Node2D" parent="."]
+
+[node name="Tween" type="Tween" parent="Addons"]

@@ -1,7 +1,7 @@
 class_name Level
 extends Node2D
 
-var menu_path = ""
+var menu_path = "res://src/menus/MainMenu.tscn"
 var current_turn = "blue"
 var filled_up_small_squares = 0
 
@@ -10,17 +10,48 @@ onready var big_square = $BigSquare
 onready var big_square_grid = $BigSquare/Grid
 onready var winner_label = $UI/UIControl/Labels/Winner
 onready var turn_labels = $UI/UIControl/Labels/TurnLabels
+onready var tween = $Addons/Tween
+
 var has_winner = false
+
 
 func _init() -> void:
 	GameInfo.current_level = self
 	
 	
 func _ready():
+	GameInfo.current_turn = "blue"
 	winner_label.visible = false
 	big_square.connect("changed_color",self, "_on_changed_color")
 	for small_squares in big_square_grid.get_children():
 		small_squares.connect("changed_color",self, "_on_changed_color")
+		for tile in small_squares.get_children():
+			tile.get_node("ColorblindTiles").visible = GameInfo.in_colorblind_mode
+			tile.intro()
+			yield(get_tree().create_timer(0.01), "timeout")
+	
+	yield(get_tree().create_timer(0.4), "timeout")
+	for small_squares in big_square_grid.get_children():
+		for tile in small_squares.get_children():
+			tile.is_clickable = true
+	
+	if GameInfo.is_blue_ai:
+		ai_move() 
+		#TODO blue stuffff!
+
+
+func ai_move() -> void:
+	pass
+	#TODO
+	#list current position as well as clickable positions
+	var move_pos = Vector2.ONE
+	#choose RANDOM (for now) among clickable positions
+	manually_click(move_pos)
+	
+	
+func manually_click(move : Vector2) -> void:
+	pass
+
 
 func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
@@ -75,10 +106,9 @@ func _on_changed_color(value, p, small_square_p) -> void:
 #		take_over_small_square(small_square_p)
 	#TODO check if 3 in a row in BigSquare
 		
-	
 	if has_winner:
-		turn_labels.visible = false
 		return
+
 	#sets up the next turn
 	turn_labels.next_turn()
 	
@@ -94,27 +124,43 @@ func _on_changed_color(value, p, small_square_p) -> void:
 		for small_square in big_square_grid.get_children():
 			for tile in small_square.get_children():
 				tile.is_selectable = true
-
-
+	#TODO check if AI then do if so
+	
+	
 func show_big_win(value) -> void:
-	print("WINNER IS ", value)
+	var game_over = $UI/UIControl/Labels/GameOver
+	var win_tween_duration := 0.6
+	game_over.visible = true
+	game_over.get_node("Tween").interpolate_property(game_over, "rect_position", game_over.rect_position + (Vector2.UP * 200), game_over.rect_position, win_tween_duration, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	game_over.get_node("Tween").start()
+	turn_labels.visible = false
+
 	winner_label.visible = true
+	var tween := $UI/UIControl/Labels/Winner/Tween
+	tween.interpolate_property(winner_label,"rect_position", winner_label.rect_position + (Vector2.DOWN * 200), winner_label.rect_position, win_tween_duration,Tween.TRANS_LINEAR,Tween.EASE_IN)
+	tween.start()
+	$UI/UIControl/Labels/Winner/MainMenuButton/AnimationPlayer.play("Blink")
+	$UI/UIControl/Labels/Winner/RestartButton/AnimationPlayer.play("Blink")
+	
 	for small_square in big_square_grid.get_children():
 			for tile in small_square.get_children():
 				tile.is_selectable = false
 				tile.is_clickable = false
 	match value:
+		0, 1:
+			$Audio/Win.play()
+			continue
 		0: #ie blue
 			winner_label.text += "blue"
 			winner_label.self_modulate = GameInfo.blue
-		1: #ie blue
+		1: #ie red
 			winner_label.text += "red"
 			winner_label.self_modulate = GameInfo.red			
-		2: #ie blue
-			winner_label.text += "no one :("
+		2: #ie yellow
+			$Audio/Lose.play()
+			$Audio/Theme.stop()
+			winner_label.text += "no one"
 			winner_label.self_modulate = GameInfo.yellow
-
-	
 
 
 func take_over_small_square(small_square_pos, value = null, tile_p = null) -> void:
@@ -122,9 +168,10 @@ func take_over_small_square(small_square_pos, value = null, tile_p = null) -> vo
 	var small_square = big_square_grid.get_node(small_square_pos)
 	if value == null:
 		value = 2
-	else:
+	else: #spawns a nice one
 		var particle = small_square_capture_particle.instance()
 		particle.rect_position = get_global_mouse_position()
+		particle.rect_position.x = clamp(particle.rect_position.x, 70, 470)
 		add_child(particle)
 #	if tile_p != null:
 #		var tile = small_square.get_node(tile_p)
@@ -134,29 +181,44 @@ func take_over_small_square(small_square_pos, value = null, tile_p = null) -> vo
 	for tile in small_square.get_children():
 		tile.capture(value)
 #		tile.animate("top_rotation")
-		
+
 	small_square.current_value = value
 	small_square.is_selectable = false
 	
 	#TODO check big square!
 	if is_three_in_a_row_big(1,2,3,value) or is_three_in_a_row_big(4,5,6,value) or is_three_in_a_row_big(7,8,9,value):
 		show_big_win(value)
+		print("BIG WIN ROW")
 	elif is_three_in_a_row_big(1,4,7,value) or is_three_in_a_row_big(2,5,8,value) or is_three_in_a_row_big(3,6,9,value):
 		show_big_win(value)
+		print("BIG WIN COLUMN")
 	elif is_three_in_a_row_big(1,5,9,value) or is_three_in_a_row_big(3,5,7,value):
 		show_big_win(value)
+		print("BIG WIN DIAGONAL")
 	elif filled_up_small_squares == 9:
-		show_big_win(value)
-		
+		show_big_win(2)
+		print("BIG WIN NO ONE :(")
+	else:
+		if value == 2:
+			$Audio/CapturedNoOne.play()
+		else:
+			$Audio/Captured.play()
+	
+	var stored_rect_scale = small_square.rect_scale	
+	tween.interpolate_property(small_square, "rect_scale", Vector2.ONE * 0.9, small_square.rect_scale * 1.03, 0.2, Tween.TRANS_LINEAR,Tween.EASE_IN)
+	tween.start()
+	yield(tween, "tween_completed")
+	tween.interpolate_property(small_square, "rect_scale", small_square.rect_scale, stored_rect_scale, 0.3, Tween.TRANS_LINEAR,Tween.EASE_IN)
+	tween.start()
 	
 	
-func is_three_in_a_row_big(pos1, pos2, pos3, value = null) -> bool:
+func is_three_in_a_row_big(pos1, pos2, pos3, value) -> bool:
 	var v1 = big_square_grid.get_node("SmallSquare" + String(pos1)).current_value
 	var v2 = big_square_grid.get_node("SmallSquare" + String(pos2)).current_value
 	var v3 = big_square_grid.get_node("SmallSquare" + String(pos3)).current_value
 	
 	if v1 == v2 and v2 == v3:
-		if value == null or v1 == value:
+		if v1 == value:
 			return true
 	return false
 	

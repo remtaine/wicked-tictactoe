@@ -6,6 +6,7 @@
 [node name="SmallSquare" type="GridContainer"]
 margin_right = 50.0
 margin_bottom = 50.0
+rect_pivot_offset = Vector2( 25, 25 )
 custom_constants/vseparation = 1
 custom_constants/hseparation = 1
 columns = 3
