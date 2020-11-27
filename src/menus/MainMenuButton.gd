@@ -1,9 +1,9 @@
 class_name MainMenuButton
 extends Button
 
-export var level_path = "res://src/levels/Level1.tscn"
+export var path = "res://src/levels/Level1.tscn"
 export var is_animated_on_start = false
-export var scene_change_delay = 1.0
+export var scene_change_delay = 0.4
 func _ready() -> void:
 	if is_animated_on_start:
 		animate()
@@ -16,4 +16,5 @@ func _on_MainMenuButton_pressed() -> void:
 	$AnimationPlayer.playback_speed = 10
 	yield(get_tree().create_timer(scene_change_delay), "timeout")
 #	get_tree().get_root().get_children()[-1].get_node("Audio/Theme").stop()
-	get_tree().change_scene(level_path)
+#	get_tree().change_scene(level_path)
+	SceneChanger.change_scene(path)

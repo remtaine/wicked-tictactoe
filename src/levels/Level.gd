@@ -1,5 +1,5 @@
 class_name Level
-extends Node2D
+extends Control
 
 var menu_path = "res://src/menus/MainMenu.tscn"
 var current_turn = "blue"
@@ -20,15 +20,26 @@ func _init() -> void:
 	
 	
 func _ready():
+	winner_label.visible = false	
+#	for small_squares in big_square_grid.get_children():
+#		for tile in small_squares.get_children():
+#			tile.visible = false
+	set_process(false)
+	set_physics_process(false)
+		#TODO blue stuffff!
+
+
+func activate():
+	$Audio/Theme.play()
 	GameInfo.current_turn = "blue"
-	winner_label.visible = false
 	big_square.connect("changed_color",self, "_on_changed_color")
 	for small_squares in big_square_grid.get_children():
 		small_squares.connect("changed_color",self, "_on_changed_color")
 		for tile in small_squares.get_children():
+#			tile.visible = true			
 			tile.get_node("ColorblindTiles").visible = GameInfo.in_colorblind_mode
 			tile.intro()
-			yield(get_tree().create_timer(0.01), "timeout")
+			yield(get_tree().create_timer(0.04), "timeout")
 	
 	yield(get_tree().create_timer(0.4), "timeout")
 	for small_squares in big_square_grid.get_children():
@@ -37,21 +48,26 @@ func _ready():
 	
 	if GameInfo.is_blue_ai:
 		ai_move() 
-		#TODO blue stuffff!
 
+	set_process(true)
+	set_physics_process(true)
 
 func ai_move() -> void:
 	pass
 	#TODO
+	#show thinking text
+	#yield for a few
 	#list current position as well as clickable positions
-	var move_pos = Vector2.ONE
+	var move_pos = get_move()
 	#choose RANDOM (for now) among clickable positions
 	manually_click(move_pos)
-	
+	#hide thinking text
+
+func get_move() -> Vector2:
+	return Vector2.ONE
 	
 func manually_click(move : Vector2) -> void:
 	pass
-
 
 func _unhandled_input(event):
 	if event.is_action_pressed("reset"):
@@ -166,6 +182,8 @@ func show_big_win(value) -> void:
 func take_over_small_square(small_square_pos, value = null, tile_p = null) -> void:
 	filled_up_small_squares += 1
 	var small_square = big_square_grid.get_node(small_square_pos)
+	$Addons/Camera2D/Screenshake.start()
+	
 	if value == null:
 		value = 2
 	else: #spawns a nice one

@@ -280,7 +280,7 @@ __meta__ = {
 
 [node name="Clicked" type="AudioStreamPlayer" parent="UI/UIControl/Labels/MainMenuButton/Audio"]
 stream = ExtResource( 12 )
-volume_db = -8.0
+volume_db = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UIControl/Labels/MainMenuButton"]
 autoplay = "Blink"
@@ -310,6 +310,9 @@ text = "1P"
 script = ExtResource( 4 )
 is_animated_on_start = true
 
+[node name="Clicked" parent="UI/UIControl/Labels/MainMenuButton/HBoxContainer/1PButton/Audio" index="0"]
+volume_db = -10.0
+
 [node name="2PButton" parent="UI/UIControl/Labels/MainMenuButton/HBoxContainer" instance=ExtResource( 2 )]
 self_modulate = Color( 1, 1, 1, 1 )
 margin_left = 187.0
@@ -322,6 +325,9 @@ custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
 text = "2P"
 is_animated_on_start = true
+
+[node name="Clicked" parent="UI/UIControl/Labels/MainMenuButton/HBoxContainer/2PButton/Audio" index="0"]
+volume_db = -10.0
 
 [node name="ColorBlind" type="Label" parent="UI/UIControl/Labels"]
 margin_left = 119.521
@@ -363,6 +369,9 @@ volume_db = -10.0
 
 [node name="Theme" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 5 )
-autoplay = true
 [connection signal="pressed" from="UI/UIControl/Labels/MainMenuButton" to="UI/UIControl/Labels/MainMenuButton" method="_on_MainMenuButton_pressed"]
 [connection signal="toggled" from="UI/UIControl/Labels/ColorBlind/CheckButton" to="UI/UIControl/Labels/ColorBlind" method="_on_CheckButton_toggled"]
+
+[editable path="UI/UIControl/Labels/MainMenuButton/HBoxContainer/1PButton"]
+
+[editable path="UI/UIControl/Labels/MainMenuButton/HBoxContainer/2PButton"]

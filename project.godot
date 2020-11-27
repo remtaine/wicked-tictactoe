@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/UI/CurrentTurnText.gd"
 }, {
-"base": "Node2D",
+"base": "Control",
 "class": "Level",
 "language": "GDScript",
 "path": "res://src/levels/Level.gd"
@@ -33,6 +33,11 @@ _global_script_classes=[ {
 "class": "OnePButton",
 "language": "GDScript",
 "path": "res://src/menus/1PButton.gd"
+}, {
+"base": "Node2D",
+"class": "Screenshake",
+"language": "GDScript",
+"path": "res://src/addons/Screenshake.gd"
 }, {
 "base": "ParallaxLayer",
 "class": "ScrollingParallaxLayer",
@@ -65,6 +70,7 @@ _global_script_class_icons={
 "Level": "",
 "MainMenuButton": "",
 "OnePButton": "",
+"Screenshake": "",
 "ScrollingParallaxLayer": "",
 "StartButton": "",
 "ThinkingLabel": "",
@@ -75,13 +81,16 @@ _global_script_class_icons={
 [application]
 
 config/name="WickedTictactoe"
-run/main_scene="res://src/menus/MainMenu.tscn"
-boot_splash/image="res://assets/images/UI/Logo Splash Screen v2.png"
+run/main_scene="res://src/menus/SplashScreen.tscn"
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+boot_splash/bg_color=Color( 0.117647, 0.117647, 0.141176, 1 )
 config/icon="res://assets/default/icon.png"
 
 [autoload]
 
 GameInfo="*res://src/global/GameInfo.gd"
+SceneChanger="*res://src/global/SceneChanger.tscn"
 
 [display]
 
@@ -89,7 +98,8 @@ window/size/width=540
 window/size/height=960
 window/size/test_width=360
 window/size/test_height=640
-window/stretch/mode="2d"
+window/handheld/orientation="portrait"
+window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [importer_defaults]
@@ -134,4 +144,5 @@ quality/driver/driver_name="GLES2"
 quality/2d/use_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0.117647, 0.117647, 0.141176, 1 )
 environment/default_environment="res://assets/default/default_env.tres"

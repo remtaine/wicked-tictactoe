@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/global/SceneChanger.gd" type="Script" id=1]
+[ext_resource path="res://assets/default/icon.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=4]
+resource_name = "enter"
+length = 0.6
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Transition:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1700, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "exit"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Transition:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1700, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "setup"
+length = 0.001
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Control/Transition:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -1700, 0 ) ]
+}
+
+[node name="SceneChanger" type="CanvasLayer"]
+layer = 128
+script = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "setup"
+anims/enter = SubResource( 4 )
+anims/exit = SubResource( 5 )
+anims/setup = SubResource( 3 )
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Transition" type="Control" parent="Control"]
+margin_left = 1600.0
+margin_right = 1640.0
+margin_bottom = 40.0
+
+[node name="Cover" type="ColorRect" parent="Control/Transition"]
+margin_left = -100.0
+margin_right = 640.0
+margin_bottom = 960.0
+color = Color( 0.117647, 0.117647, 0.141176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="ColorRect" parent="Control/Transition"]
+margin_left = -100.0
+margin_right = 1340.0
+margin_bottom = 1440.0
+rect_rotation = 45.0
+color = Color( 0.117647, 0.117647, 0.141176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="ColorRect" parent="Control/Transition"]
+margin_left = 640.0
+margin_right = 2080.0
+margin_bottom = 1440.0
+rect_rotation = 45.0
+color = Color( 0.117647, 0.117647, 0.141176, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="icon" type="TextureRect" parent="Control/Transition"]
+visible = false
+anchor_left = 0.00145688
+anchor_right = 0.00145688
+margin_left = 141.942
+margin_top = 352.0
+margin_right = 397.942
+margin_bottom = 608.0
+texture = ExtResource( 2 )
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

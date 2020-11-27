@@ -19,7 +19,7 @@ export (float) var modulate_on_unselectable = 0.6
 
 var is_selectable = true setget set_selectable
 var is_clickable = true setget set_clickable
-var intro_tween_duration = 0.6
+var intro_tween_duration = 0.2
 var clicked_tween_duration = 0.3
 
 onready var tween = $Tween
@@ -28,12 +28,15 @@ onready var clicked_particle = preload("res://src/particles/ClickedParticle.tscn
 
 func _ready() -> void:
 	yield(get_tree(), "idle_frame")
-	rect_scale = Vector2.ZERO
+	visible = false
+#	rect_scale = Vector2.ZERO
 	is_clickable = false
 	
 func intro() -> void:
-	tween.interpolate_property(self, "rect_rotation", rect_rotation - 360, rect_rotation, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
-	tween.interpolate_property(self, "rect_scale", Vector2.ZERO, Vector2.ONE, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
+#	tween.interpolate_property(self, "rect_rotation", rect_rotation - 360, rect_rotation, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
+#	tween.interpolate_property(self, "rect_scale", Vector2.ZERO, Vector2.ONE, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
+	visible = true
+	tween.interpolate_property(self, "rect_position", rect_position + Vector2.UP * 6, rect_position, intro_tween_duration, Tween.TRANS_LINEAR,Tween.EASE_IN)
 	tween.start()
 	
 func capture(value = Value.NONE) -> void:
@@ -133,3 +136,14 @@ func set_clickable(c) -> void:
 		return
 	is_clickable = c
 	rect_scale = Vector2.ONE
+
+
+func _on_Tween_tween_completed(object: Object, key: NodePath) -> void:
+#	$Audio/Spawned.play()
+	pass
+
+func _on_Tween_tween_started(object: Object, key: NodePath) -> void:
+#	if key == ":rect_scale":
+	$Audio/Spawned.play()
+	
+	pass # Replace with function body.

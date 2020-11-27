@@ -1,5 +1,6 @@
 [gd_scene load_steps=20 format=2]
 
+[ext_resource path="res://src/addons/Screenshake.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/squares/BigSquare.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/fonts/Pixels TEXT.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://src/levels/Level.gd" type="Script" id=5]
@@ -11,7 +12,6 @@
 [ext_resource path="res://assets/sfx/small_squared_captured_no_one.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/sfx/gameover2.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/sfx/Powerup32.wav" type="AudioStream" id=14]
-[ext_resource path="res://assets/sfx/Jump8.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/images/tiles/blue_mark.png" type="Texture" id=16]
 [ext_resource path="res://assets/images/tiles/red_mark.png" type="Texture" id=17]
 
@@ -50,18 +50,22 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( -505.087, 0 ) ]
 }
 
-[node name="Level1" type="Node2D"]
-position = Vector2( 0, -0.944397 )
+[node name="Level1" type="Control"]
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
 
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
+[node name="Background" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
 show_behind_parent = true
-margin_right = 960.0
-margin_bottom = 960.0
+margin_left = -270.0
+margin_top = -480.0
+margin_right = 810.0
+margin_bottom = 1440.0
 mouse_filter = 1
 color = Color( 0.117647, 0.117647, 0.141176, 1 )
 __meta__ = {
@@ -175,6 +179,8 @@ scale_amount = 5.0
 color = Color( 0.811765, 0.776471, 0.721569, 0.0980392 )
 
 [node name="BigSquare" parent="." instance=ExtResource( 3 )]
+anchor_right = 0.5
+anchor_bottom = 0.5
 margin_left = 188.812
 margin_top = 385.552
 margin_right = 188.812
@@ -240,9 +246,9 @@ __meta__ = {
 
 [node name="RestartButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
 self_modulate = Color( 1, 1, 1, 1 )
-margin_left = 51.6343
+margin_left = 48.9341
 margin_top = 100.379
-margin_right = 238.634
+margin_right = 235.934
 margin_bottom = 180.379
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
@@ -252,16 +258,16 @@ text = "Restart"
 
 [node name="MainMenuButton" parent="UI/UIControl/Labels/Winner" instance=ExtResource( 9 )]
 self_modulate = Color( 1, 1, 1, 1 )
-margin_left = 359.31
-margin_top = 100.379
-margin_right = 490.31
-margin_bottom = 180.379
+margin_left = 360.799
+margin_top = 101.868
+margin_right = 491.799
+margin_bottom = 181.868
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
 text = "menu"
-level_path = "res://src/menus/MainMenu.tscn"
+path = "res://src/menus/MainMenu.tscn"
 
 [node name="Tween" type="Tween" parent="UI/UIControl/Labels/Winner"]
 
@@ -337,29 +343,31 @@ texture = ExtResource( 17 )
 
 [node name="Theme" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 10 )
-autoplay = true
 
 [node name="Captured" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 11 )
-volume_db = -10.0
+volume_db = -12.0
 
 [node name="CapturedNoOne" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 12 )
-volume_db = -5.0
+volume_db = -7.0
 
 [node name="Win" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 14 )
+volume_db = -5.0
 
 [node name="Lose" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 13 )
-
-[node name="Intro" type="AudioStreamPlayer" parent="Audio"]
-stream = ExtResource( 15 )
-volume_db = -3.0
-autoplay = true
+volume_db = -5.0
 
 [node name="Addons" type="Node2D" parent="."]
 
 [node name="Tween" type="Tween" parent="Addons"]
+
+[node name="Camera2D" type="Camera2D" parent="Addons"]
+position = Vector2( 270, 480 )
+current = true
+
+[node name="Screenshake" parent="Addons/Camera2D" instance=ExtResource( 1 )]
 
 [editable path="BigSquare"]
