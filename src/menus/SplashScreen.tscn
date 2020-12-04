@@ -5,43 +5,46 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "show"
-length = 2.6
-step = 0.25
+length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Logo Splash Screen v2:modulate")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.75, 1.75, 2.5 ),
+"times": PoolRealArray( 0, 0.75, 1.75, 2.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
 [node name="SplashScreen" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -270.0
-margin_top = -480.0
-margin_right = 810.0
-margin_bottom = 1440.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Logo Splash Screen v2" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.8 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -270.0
+margin_top = -480.0
+margin_right = 270.0
+margin_bottom = 480.0
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
