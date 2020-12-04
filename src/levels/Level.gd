@@ -182,7 +182,7 @@ func show_big_win(value) -> void:
 func take_over_small_square(small_square_pos, value = null, tile_p = null) -> void:
 	filled_up_small_squares += 1
 	var small_square = big_square_grid.get_node(small_square_pos)
-	$Addons/Camera2D/Screenshake.start()
+#	$Addons/Camera2D/Screenshake.start()
 	
 	if value == null:
 		value = 2
