@@ -1,4 +1,4 @@
-extends Control
+extends Node
 
 export var skip_splashscreen := false
 
