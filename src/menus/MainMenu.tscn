@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/menus/StartButton.gd" type="Script" id=1]
 [ext_resource path="res://src/menus/PathButton.tscn" type="PackedScene" id=2]
@@ -12,35 +12,31 @@
 [ext_resource path="res://assets/images/tiles/empty_tile.png" type="Texture" id=10]
 [ext_resource path="res://assets/box formats/CheckboxFormat.tres" type="StyleBox" id=11]
 [ext_resource path="res://assets/sfx/button_clicked.ogg" type="AudioStream" id=12]
+[ext_resource path="res://src/menus/buttons/Credits.gd" type="Script" id=13]
+[ext_resource path="res://assets/fonts/ChevyRay - Little League.ttf" type="DynamicFontData" id=14]
 
 [sub_resource type="DynamicFont" id=1]
-size = 192
+size = 65
 outline_size = 12
 outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
-font_data = ExtResource( 3 )
+font_data = ExtResource( 14 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 48
-outline_size = 4
-outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 240
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
+[sub_resource type="StyleBoxEmpty" id=3]
+
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=5]
-
-[sub_resource type="DynamicFont" id=6]
-size = 224
+[sub_resource type="DynamicFont" id=5]
+size = 55
 outline_size = 12
 outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
-font_data = ExtResource( 3 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -56,33 +52,41 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.196078 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="DynamicFont" id=8]
-size = 168
+[sub_resource type="DynamicFont" id=7]
+size = 50
 outline_size = 12
 outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
-font_data = ExtResource( 3 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 64
+[sub_resource type="DynamicFont" id=8]
+size = 20
 outline_size = 4
 outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
-font_data = ExtResource( 3 )
+font_data = ExtResource( 14 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=9]
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
-[node name="MainMenu" type="Node2D"]
+[sub_resource type="DynamicFont" id=10]
+size = 15
+outline_size = 4
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 14 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 15
+outline_size = 4
+outline_color = Color( 0.117647, 0.117647, 0.141176, 1 )
+font_data = ExtResource( 14 )
+
+[node name="MainMenu" type="Node"]
 script = ExtResource( 6 )
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
+[node name="ColorRect" type="ColorRect" parent="."]
 show_behind_parent = true
-margin_right = 540.0
-margin_bottom = 960.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 1
 color = Color( 0.117647, 0.117647, 0.141176, 1 )
 __meta__ = {
@@ -198,65 +202,35 @@ color = Color( 0.901961, 0.282353, 0.180392, 1 )
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="UIControl" type="Control" parent="UI"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Labels" type="Control" parent="UI/UIControl"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="Label" parent="UI/UIControl/Labels"]
-margin_left = 10.0
-margin_top = 44.4131
-margin_right = 550.0
-margin_bottom = 294.413
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -270.0
+margin_top = 77.1717
+margin_right = 270.0
+margin_bottom = 299.172
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
-custom_constants/line_spacing = -30
+custom_constants/line_spacing = 20
 text = "Wicked
 TicTacToe"
 align = 1
 valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Credits" type="Label" parent="UI/UIControl/Labels"]
-margin_left = 10.0
-margin_top = 900.0
-margin_right = 540.0
-margin_bottom = 950.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
-custom_constants/line_spacing = -30
-text = "Made by Remtaine"
-valign = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Version" type="Label" parent="UI/UIControl/Labels"]
-margin_top = 900.0
-margin_right = 530.0
-margin_bottom = 950.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
-custom_constants/line_spacing = -30
-text = "v1.0.9"
-align = 2
-valign = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -267,17 +241,21 @@ margin_left = 10.0
 margin_top = 361.354
 margin_right = 540.0
 margin_bottom = 542.354
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 is_animated_on_start = true
 
 [node name="StartButton" type="Button" parent="UI/UIControl/Labels"]
-margin_left = 10.7415
-margin_top = 348.722
-margin_right = 550.742
-margin_bottom = 518.722
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -270.0
+margin_top = -85.0
+margin_right = 270.0
+margin_bottom = 85.0
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color_disabled = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
@@ -297,25 +275,27 @@ volume_db = -10.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/UIControl/Labels/StartButton"]
 autoplay = "Blink"
-anims/Blink = SubResource( 7 )
+anims/Blink = SubResource( 6 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/UIControl/Labels/StartButton"]
-margin_left = 119.455
-margin_top = 133.151
-margin_right = 424.455
-margin_bottom = 303.151
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = 85.9962
+margin_bottom = 161.996
 custom_constants/separation = 80
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="1PButton" parent="UI/UIControl/Labels/StartButton/HBoxContainer" instance=ExtResource( 2 )]
 self_modulate = Color( 1, 1, 1, 1 )
-margin_left = 0.0
+margin_left = 138.0
 margin_top = 0.0
-margin_right = 107.0
-margin_bottom = 170.0
-custom_fonts/font = SubResource( 8 )
+margin_right = 230.0
+margin_bottom = 76.0
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
@@ -325,11 +305,11 @@ is_animated_on_start = true
 
 [node name="2PButton" parent="UI/UIControl/Labels/StartButton/HBoxContainer" instance=ExtResource( 2 )]
 self_modulate = Color( 1, 1, 1, 1 )
-margin_left = 187.0
+margin_left = 310.0
 margin_top = 0.0
-margin_right = 305.0
-margin_bottom = 170.0
-custom_fonts/font = SubResource( 8 )
+margin_right = 402.0
+margin_bottom = 76.0
+custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_hover = Color( 0.933333, 0.921569, 0.827451, 1 )
 custom_colors/font_color_pressed = Color( 0.933333, 0.921569, 0.827451, 1 )
@@ -337,11 +317,15 @@ text = "2P"
 is_animated_on_start = true
 
 [node name="ColorBlind" type="Label" parent="UI/UIControl/Labels"]
-margin_left = 119.521
-margin_top = 749.046
-margin_right = 375.521
-margin_bottom = 796.046
-custom_fonts/font = SubResource( 9 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -139.996
+margin_top = 277.071
+margin_right = 116.004
+margin_bottom = 324.071
+custom_fonts/font = SubResource( 8 )
 custom_colors/font_color = Color( 0.819608, 0.811765, 0.729412, 1 )
 text = "Colorblind Mode"
 script = ExtResource( 8 )
@@ -350,10 +334,10 @@ __meta__ = {
 }
 
 [node name="CheckButton" type="CheckBox" parent="UI/UIControl/Labels/ColorBlind"]
-margin_left = 258.935
-margin_top = 12.106
-margin_right = 278.935
-margin_bottom = 32.106
+margin_left = 242.94
+margin_top = -4.55545
+margin_right = 262.94
+margin_bottom = 15.4445
 rect_scale = Vector2( 2, 2 )
 mouse_filter = 1
 custom_icons/checked = ExtResource( 9 )
@@ -363,7 +347,7 @@ custom_styles/pressed = ExtResource( 11 )
 custom_styles/focus = ExtResource( 11 )
 custom_styles/hover_pressed = ExtResource( 11 )
 custom_styles/normal = ExtResource( 11 )
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -372,9 +356,51 @@ __meta__ = {
 stream = ExtResource( 12 )
 volume_db = -10.0
 
-[node name="Audio" type="Node2D" parent="."]
+[node name="Credits" type="RichTextLabel" parent="UI/UIControl/Labels"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 2.67612
+margin_top = -24.1335
+margin_right = 532.676
+margin_bottom = 25.8665
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 10 )
+bbcode_enabled = true
+bbcode_text = "Made by [url=https://www.remtaine.com/]Remtaine[/url]"
+text = "Made by Remtaine"
+fit_content_height = true
+scroll_active = false
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Version" type="Label" parent="UI/UIControl/Labels"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -535.0
+margin_top = -29.0081
+margin_right = -5.0
+margin_bottom = 20.9919
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.933333, 0.921569, 0.827451, 1 )
+custom_constants/line_spacing = -30
+text = "v1.0.9"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio" type="Node" parent="."]
 
 [node name="Theme" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource( 5 )
+
 [connection signal="pressed" from="UI/UIControl/Labels/StartButton" to="UI/UIControl/Labels/StartButton" method="_on_MainMenuButton_pressed"]
 [connection signal="toggled" from="UI/UIControl/Labels/ColorBlind/CheckButton" to="UI/UIControl/Labels/ColorBlind" method="_on_CheckButton_toggled"]
