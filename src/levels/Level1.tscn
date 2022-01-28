@@ -51,21 +51,17 @@ tracks/0/keys = {
 }
 
 [node name="Level1" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Background" type="ColorRect" parent="ParallaxBackground/ParallaxLayer1"]
+[node name="Background" type="ColorRect" parent="."]
 show_behind_parent = true
-margin_left = -270.0
-margin_top = -480.0
-margin_right = 810.0
-margin_bottom = 1440.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 mouse_filter = 1
 color = Color( 0.117647, 0.117647, 0.141176, 1 )
 __meta__ = {
