@@ -39,8 +39,25 @@ func activate():
 #			tile.visible = true			
 			tile.get_node("ColorblindTiles").visible = GameInfo.in_colorblind_mode
 			tile.intro()
-			yield(get_tree().create_timer(0.04), "timeout")
+			yield(get_tree().create_timer(0.03), "timeout")
 	
+#	for small_squares in big_square_grid.get_children():
+#		small_squares.connect("changed_color",self, "_on_changed_color")
+#
+#	var ss = big_square_grid.get_children(); #array of size 9
+#
+#	for i in range(9):
+#		for j in range(9):
+#			var tile = ss[j].get_child(i)
+#			tile.get_node("ColorblindTiles").visible = GameInfo.in_colorblind_mode
+#			tile.intro()
+#		yield(get_tree().create_timer(0.), "timeout")
+		
+#		for tile in small_squares.get_children():
+#			tile.get_node("ColorblindTiles").visible = GameInfo.in_colorblind_mode
+#			tile.intro()
+#			yield(get_tree().create_timer(0.04), "timeout")
+
 	yield(get_tree().create_timer(0.4), "timeout")
 	for small_squares in big_square_grid.get_children():
 		for tile in small_squares.get_children():
